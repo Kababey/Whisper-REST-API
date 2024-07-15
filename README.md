@@ -1,5 +1,5 @@
-# Whisper-STT-REST-API
-Whisper STT REST API  is made by using Fast API
+# Whisper-REST-API
+Whisper REST API is made by using Fast API
 
 Whisper outperforms other models in terms of performance. In this task, we will use Python to infer OpenAI's Whisper model and create a REST API using the FastAPI framework.
 
@@ -49,7 +49,7 @@ The resulting text is returned in both .txt and .srt formats in the response bod
 ![image](https://github.com/user-attachments/assets/10b8f03d-a5d2-4e51-9602-f9d089a00ffe)
 
 After using one of the two methods correctly, there will be srt and txt files in the temp folder created.
-
+There is an example of transcription created by this API in the test_results folder
 
 ## Resources
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
