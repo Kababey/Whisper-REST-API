@@ -3,7 +3,7 @@ Whisper REST API is made by using Fast API
 
 Whisper outperforms other models in terms of performance. In this task, we will use Python to infer OpenAI's Whisper model and create a REST API using the FastAPI framework.
 
-If you dont have FFMPEG you may see errors to check it:
+If you dont have FFMPEG you may see errors. To check it:
 ``ffmpeg -version``
 If not follow the link:
 [Geeksforgeeks ffmpeg on windows](https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/) 
