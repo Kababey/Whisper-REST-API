@@ -12,7 +12,6 @@ def save_file(uploaded_file: UploadFile, path: str) -> str:
     return path
 
 def transcribe_audio(file_path: str, language: str = "tr") -> str:
-
     result = model.transcribe(file_path, language=language,  fp16=False)
     return result["text"]
 
@@ -21,7 +20,7 @@ def generate_srt(transcription: str) -> str:
     # Placeholder for generating SRT. Implement as needed.
     return transcription.replace("\n", "\n1\n")
 
-@app.post("/inferencePath")
+@app.post("/inferencePath/")
 async def inference_path(filepath: str):
     
     if not os.path.exists(filepath):
@@ -29,8 +28,8 @@ async def inference_path(filepath: str):
     text = transcribe_audio(filepath)
     srt = generate_srt(text)
     temp_dir = "temp"
-    text_file_path = os.path.join(temp_dir, "transcription_"+ filepath + "_.txt") # This is optional path for saving the transcription as a text file,  can be directly name as
-    srt_file_path = os.path.join(temp_dir, "transcription_"+ filepath + "_.srt") # os.path.join(temp_dir, "transcription.txt") | os.path.join(temp_dir, "transcription.srt")
+    text_file_path = os.path.join(filepath + "_.txt") # This is optional path for saving the transcription as a text file,  can be directly name as
+    srt_file_path = os.path.join(filepath + "_.srt") # os.path.join(temp_dir, "transcription.txt") | os.path.join(temp_dir, "transcription.srt")
 
     with open(text_file_path, "w",encoding="utf-8") as text_file:
         text_file.write(text)
@@ -41,7 +40,7 @@ async def inference_path(filepath: str):
     return {"text": text, "srt": srt}
 
 
-@app.post("/inferenceRaw")
+@app.post("/inferenceRaw/")
 async def inference_raw(file: UploadFile = File(...)):
     
     temp_dir = "temp"
@@ -51,11 +50,11 @@ async def inference_raw(file: UploadFile = File(...)):
     text = transcribe_audio(file_path)
     srt = generate_srt(text)
     # os.remove(file_path)  # Clean up the temporary file
-    
     # Save text and srt files
-    text_file_path = os.path.join(temp_dir, "transcription_"+ file_path + "_.txt") # This is optional path for saving the transcription as a text file,  can be directly name as
-    srt_file_path = os.path.join(temp_dir, "transcription_"+ file_path + "_.srt") # os.path.join(temp_dir, "transcription.txt") | os.path.join(temp_dir, "transcription.srt")
+    text_file_path = os.path.join( file_path + "_.txt") # This is optional path for saving the transcription as a text file,  can be directly name as
+    srt_file_path = os.path.join( file_path + "_.srt") # os.path.join(temp_dir, "transcription.txt") | os.path.join(temp_dir, "transcription.srt")
 
+    
     with open(text_file_path, "w",encoding="utf-8") as text_file:
         text_file.write(text)
 
