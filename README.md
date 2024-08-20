@@ -15,7 +15,7 @@ Necessary commands:
 ```
 python3 -m venv whisper-env 
 whisper-env/bin/activate 
-pip install fastapi uvicorn pydantic whisper 
+pip install fastapi uvicorn pydantic openai-whisper 
 ```
 We are ready to start the API:
 ```uvicorn main:app --reload ```
